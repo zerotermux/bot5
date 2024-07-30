@@ -23,21 +23,21 @@ global.botname = 'Shiroko Chan & Galirus Sensei' //ur bot name
 global.ownernumber = '6285850268349' //ur owner number
 global.ownername = 'GALIRUS SENSEI' //ur owner name
 global.websitex = "https://youtu.be/OkJvdx27t-w"
-global.wagc = "https://whatsapp.com/channel/0029VaG9VfPKWEKk1rxTQD20"
+global.wagc = "https://whatsapp.com/channel/0029VacIkty7dmeShHqzJC1W"
 global.themeemoji = '🧐'
 global.wm = "Galirus Sensei."
 global.botscript = 'https://Github.com/Galirus404/bug-wa' //script link
 global.packname = "Sticker By"
 global.author = "GALIRUS SENSEI\n\n+6285850268349"
 global.creator = "6285850268349@s.whatsapp.net"
-global.xprefix = '.'
+global.xprefix = ''
 global.premium = ["6285850268349"] // Premium User
 global.hituet = 0
 
 //bot sett
 global.typemenu = 'v8' // menu type 'v1' => 'v8'
 global.typereply = 'v2' // reply type 'v1' => 'v3'
-global.autoblocknumber = '92' //set autoblock country code
+global.autoblocknumber = '48' //set autoblock country code
 global.antiforeignnumber = '91' //set anti foreign number country code
 global.welcome = false //welcome/left in groups
 global.anticall = true //bot blocks user when called
@@ -48,7 +48,7 @@ global.groupevent = false //show update messages in group chat
 global.mess = {
 	limit: 'Batas Anda sudah habis!',
 	nsfw: 'Nsfw dinonaktifkan di grup ini, Tolong beritahu admin untuk mengaktifkannya',
-    done: 'Done✓',
+    done: 'ガリラス先生クリア | Selesai Sensei Galirus ✓',
     error: 'Error Mas E !',
     success: 'GALIRUS: Wanjaay Nih Tod Dah Selesai!'
 }
