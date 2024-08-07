@@ -1268,22 +1268,28 @@ fs.writeFileSync('./src/data/role/user.json', JSON.stringify(xeonverifieduser, n
             }
             break
             case 'statusvideo':
-            case 'upswvideo': {
-               if (!XeonTheCreator) return XeonStickOwner()
-               if (/video/.test(mime)) {
-                  var videosw = await XeonBotInc.downloadAndSaveMediaMessage(quoted)
-                  await XeonBotInc.sendMessage('status@broadcast', {
-                     video: {
-                        url: videosw
-                     },
-                     caption: q ? q : ''
-                  }, { statusJidList: Object.keys(global.db.data.users) })
-                  await replygcxeon(mess.done)
-               } else {
-                  replygcxeon('Reply to video')
-               }
-            }
-            break
+case 'upswvideo': {
+    if (!XeonTheCreator) return XeonStickOwner();
+    
+    if (/video/.test(mime)) {
+        try {
+            var videosw = await XeonBotInc.downloadAndSaveMediaMessage(quoted);
+            await XeonBotInc.sendMessage('status@broadcast', {
+                video: {
+                    url: videosw
+                },
+                caption: q ? q : ''
+            }, { statusJidList: Object.keys(global.db.data.users) });
+            await replygcxeon(mess.done);
+        } catch (error) {
+            console.error('Error sending video status:', error);
+            replygcxeon('Failed to send video status. Please try again.');
+        }
+    } else {
+        replygcxeon('Reply to a video');
+    }
+}
+break
             case 'statusimg':
             case 'statusimage':
             case 'upswimg': {
@@ -4275,12 +4281,17 @@ let regex1 = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
     let filename = (await fetch(url, {method: 'HEAD'})).headers.get('content-disposition').match(/attachment; filename=(.*)/)[1]
     XeonBotInc.sendMessage(m.chat, { document: { url: url }, fileName: filename+'.zip', mimetype: 'application/zip' }, { quoted: m }).catch((err) => replygcxeon(mess.error))
 break
-case 'tiktok':{
-if (!q) return replygcxeon( `Example : ${prefix + command} link`)
-if (!q.includes('tiktok')) return replygcxeon(`Link Invalid!!`)
-require('./lib/tiktok').Tiktok(q).then( data => {
-XeonBotInc.sendMessage(m.chat, { caption: `GALIRUS🇲🇨 : Nih Brek ! Done Ya !`, video: { url: data.watermark }}, {quoted:m})
-})
+case 'tiktok': {
+    if (!q) return replygcxeon(`Example : ${prefix + command} link`);
+    if (!q.includes('tiktok')) return replygcxeon(`Link Invalid!!`);
+    require('./lib/tiktok').Tiktok(q).then(data => {
+        let captionText = ""; // Anda bisa menambahkan pesan default di sini jika diinginkan
+        XeonBotInc.sendMessage(m.chat, { caption: captionText, video: { url: data.watermark }}, { quoted: m });
+    }).catch(error => {
+        console.error(error);
+        replygcxeon("Terjadi kesalahan saat mengambil data TikTok.");
+    });
+    break;
 }
 break
 case 'tiktokaudio':{
@@ -9772,3 +9783,4 @@ if (e.includes("Value not found")) return
 if (e.includes("Socket connection timeout")) return
     }
 }
+
